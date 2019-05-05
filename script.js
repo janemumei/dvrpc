@@ -162,6 +162,7 @@ $.when(
     return div;
 
   };
+  legend.addTo(map);
 
   map.setMaxBounds(nbhd.getBounds());
 
