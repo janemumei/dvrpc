@@ -2,7 +2,9 @@
 
 /* == START MAP == */
 
-var map = L.map('map').setView([51.0486, -114.0708], 13);
+var map = L.map('map',{
+  minZoom:10
+}).setView([51.0486, -114.0708], 11);
 
 // 'labels' pane on top (z-index 650)
 map.createPane('labels');
@@ -128,6 +130,7 @@ $.when(
   // add controls
 
   L.control.layers({
+    'Hide all'          : L.tileLayer(''),
     'Restaurants'       : yelp,
     'Clusters'          : cluster,
     'Heatmap'           : heat
@@ -157,9 +160,10 @@ $.when(
     }
 
     return div;
+
   };
 
-  legend.addTo(map);
+  map.setMaxBounds(nbhd.getBounds());
 
 });
 
