@@ -52,7 +52,7 @@ $.when(
 
       let r = feature.properties;
       mk.bindPopup(`
-        <h3 style="background-color:#aaa;">${r.name.replace(/,|- /g, '<br>')}</h3>
+        <h3 style="border:1px solid #aaa; color:#000;">${r.name.replace(/,|- /g, '<br>')}</h3>
         <p><strong>${r.stars} stars</strong> (${r.review_count} reviews)</p>
         <p>
           ${r.address.replace(/,|- /g, '<br>')}<br>
@@ -106,7 +106,13 @@ $.when(
     onEachFeature: function(feature,layer) {
       let c = feature.properties
       layer.bindPopup(`
-        <h3 style="background-color:${color(c.density)}">${c.name}</h3>
+        <p style="margin-bottom:0 !important;">Census community ${c.comm_code}</p>
+        <h3 style="
+          background-color:${color(c.density)};
+          color:#fff;
+          border: 1px solid #aaa;
+          margin-top:0;
+        ">${c.name}</h3>
         <p>
           ${c.count} restaurants<br>
           (${Math.round(c.density*100)/100} per sq km)
@@ -160,8 +166,8 @@ $.when(
     }
 
     return div;
-
   };
+
   legend.addTo(map);
 
   map.setMaxBounds(nbhd.getBounds());
